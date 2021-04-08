@@ -1,6 +1,8 @@
 
 //  Game status element goes here to more easily use it later on 
 const statusDisplay = document.querySelector('.game--status');
+// same with score
+scoreDisplay = document.querySelector('.PlayerScore');
 
 // Variables that will track the game state throught the game. 
 
@@ -10,28 +12,57 @@ let gameActive = true;
 // Establish current player here, so we know whos turn. array of objects so we can change names and signs later.
 let players = [
   {
+    'id' : ['Player1'],
     'name' : ['player 1'],
-    'sign' : ['X']
+    'sign' : ['X'],
+    'score' : [0]
   },{
+    'id' : ['Player2'],
     'name' : ['player 2'],
-    'sign' : ['O']
+    'sign' : ['O'],
+    'score' : [0]
   }
 ];
 
 let currentPlayer = players[0];
+let P1 = players[0];
+let P2 = players[1];
 
-  
+// set player name based on input field entry when button pressed
+const setPlayer1Name = function(){
+  const input = document.getElementById('Player1');
+  objIndex = players.findIndex((obj => obj.id == 'Player1'));
+  // ignore if input is empty
+  if (input.value !== ""){
+  // set new player name
+  players[objIndex].name = input.value;
+  // restart game to refresh player name
+  statusDisplay.innerHTML = currentPlayerTurn();
+  }
+};
 
-// current game state, the form of empty strings in an array will allow us to easily track played cells and validate the game state later on
+// repeat for player 2 as i couldnt get it work for both in one fuction
+const setPlayer2Name = function(){
+  const input = document.getElementById('Player2');
+  objIndex = players.findIndex((obj => obj.id == 'Player2'));
+    if (input.value !== ""){
+      players[objIndex].name = input.value;
+      statusDisplay.innerHTML = currentPlayerTurn();
+    }
+};
+
+// current game state, empty strings in an array will allow us to easily track played cells and validate the game state later on
 let gameState = ["", "", "", "", "", "", "", "", ""];
 
 // messages displayed to the user during the game, declared as functions, so that the message gets created with current data every time we need it.
 const winMessage = () => `${currentPlayer['name']} has won!`;
 const drawMessage = () => `Game ended in a draw!`;
 const currentPlayerTurn = () => `It's ${currentPlayer['name']}'s turn`;
+const scoreBoard = () => `${P1['score']} / ${P2['score']}`
 
 // set the inital message to let the players know whose turn it is
 statusDisplay.innerHTML = currentPlayerTurn();
+scoreDisplay.innerHTML = scoreBoard();
 
 // listed winning scenarios
 const winScenarios = [
@@ -47,7 +78,7 @@ const winScenarios = [
 
 const cellPlayed = function(clickedCell, clickedCellIndex) {
   //  update internal game state to reflect the played move, as well as update the user interface to reflect the played move
-      gameState[clickedCellIndex] = currentPlayer['name'];
+      gameState[clickedCellIndex] = currentPlayer['id'];
       clickedCell.innerHTML = currentPlayer['sign'];
   }
 
@@ -75,6 +106,8 @@ const resultValidation = function () {
 
   if (roundWon) {
     statusDisplay.innerHTML = winMessage();
+    currentPlayer['score'] = parseInt(currentPlayer['score']) + 1;
+    scoreDisplay.innerHTML = scoreBoard();  
     gameActive = false;
     return;
 }
@@ -124,5 +157,5 @@ const restartGame =function () {
 // And finally we add our event listeners to the actual game cells, as well as our restart button
 document.querySelectorAll('.cell').forEach(cell => cell.addEventListener('click', cellClick));
 document.querySelector('.game--restart').addEventListener('click', restartGame);
-// document.querySelector('#Player1').addEventListener('click', setPlayerName)
-// document.querySelector('#Player2').addEventListener('click', setPlayerName)
+document.querySelector('#p1').addEventListener('click', setPlayer1Name)
+document.querySelector('#p2').addEventListener('click', setPlayer2Name)
