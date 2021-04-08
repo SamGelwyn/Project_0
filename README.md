@@ -25,7 +25,7 @@ Second Paragraph
 ## Emphasis
 
 We can have *italic* text. you can have **bold** text. You can have ***bold-italic*** text.
-_italic_, __Bold__, ___Bold italic___ ???
+_italic_, __Bold__, ___Bold italic___
 
 
 ![bill murray] (http://www.fillmurray.com./500/400)
