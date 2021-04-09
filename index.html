@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Tic Tac Toe</title>
   <link rel="stylesheet" href="css/style.css">
   <script src="js/jquery.js"></script>
   <body>
@@ -13,11 +13,11 @@
             <div class="stars"></div>
         </div>
         <h1 class="game--title">Tic Tac Toe</h1>
-        <input type="text" id="Player1" placeholder="Player 1" /><button type="submit" id="p1">Player1</button>
-        <input type="text" id="Player2" placeholder="Player 2" /><button type="submit" id="p2">Player2</button>
+        <input type="text" id="Player1" placeholder="Player 1" /><button class="button" type="submit" id="p1">Player1</button>
+        <input type="text" id="Player2" placeholder="Player 2" /><button class="button" type="submit" id="p2">Player2</button>
         <h2 class="PlayerScore">/</h2>
 
-        
+        <h2 class="game--status"></h2>        
         <div class="game--container">   
             <div data-cell-index="0" class="cell"></div>
             <div data-cell-index="1" class="cell"></div>
@@ -29,8 +29,8 @@
             <div data-cell-index="7" class="cell"></div>
             <div data-cell-index="8" class="cell"></div>
         </div>
-        <h2 class="game--status"></h2>
-        <button class="game--restart">Restart Game</button>
+        
+        <button class="game--restart button">Restart Game</button>
         
     </section>
   

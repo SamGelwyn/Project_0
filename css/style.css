@@ -9,6 +9,11 @@ body {
 section {
   text-align: center;
 }
+
+.button {
+  cursor: pointer;
+}
+
 .game--container {
   display: grid;
   grid-template-columns: repeat(3, auto);
@@ -24,6 +29,12 @@ section {
   cursor: pointer;
 line-height: 150px;
   font-size: 100px;
+}
+.cell:hover{
+  background-color: rgba(71, 71, 128, 0.3);
+}
+.cell--winner{
+  color: blue;
 }
 
 html, body {
