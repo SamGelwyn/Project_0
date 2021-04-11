@@ -38,6 +38,7 @@ const setPlayer1Name = function(){
   players[objIndex].name = input.value;
   // restart game to refresh player name
   statusDisplay.innerHTML = currentPlayerTurn();
+  scoreDisplay.innerHTML = scoreBoard();
   }
 };
 
@@ -48,6 +49,7 @@ const setPlayer2Name = function(){
     if (input.value !== ""){
       players[objIndex].name = input.value;
       statusDisplay.innerHTML = currentPlayerTurn();
+      scoreDisplay.innerHTML = scoreBoard();
     }
 };
 
@@ -58,7 +60,7 @@ let gameState = ["", "", "", "", "", "", "", "", ""];
 const winMessage = () => `${currentPlayer['name']} has won!`;
 const drawMessage = () => `Game ended in a draw!`;
 const currentPlayerTurn = () => `It's ${currentPlayer['name']}'s turn`;
-const scoreBoard = () => `${P1['score']} / ${P2['score']}`
+const scoreBoard = () => `${P1['name']} ${P1['score']} / ${P2['score']} ${P2['name']}`
 
 // set the inital message to let the players know whose turn it is
 statusDisplay.innerHTML = currentPlayerTurn();
@@ -88,7 +90,7 @@ const playerChange = function() {
   statusDisplay.innerHTML = currentPlayerTurn();
 }
 
-// result valdiation
+// result valdiation. 
 const resultValidation = function () {
   let roundWon = false;
   for (let i = 0; i <= 7; i++) {
